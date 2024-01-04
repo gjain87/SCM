@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: smartcontact_eh2r_user
+      POSTGRES_PASSWORD: UvSv2iZ6Nblj1b9W11FRodzwf9xBrb7B
+      POSTGRES_DB: smartcontact_eh2r
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://dpg-cmb4vsvqd2ns73etjo3g-a.oregon-postgres.render.com:5432/smartcontact_eh2r
+      SPRING_DATASOURCE_USERNAME: smartcontact_eh2r_user
+      SPRING_DATASOURCE_PASSWORD: UvSv2iZ6Nblj1b9W11FRodzwf9xBrb7B
+volumes:
+  postgres-data:
