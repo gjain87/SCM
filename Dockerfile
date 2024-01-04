@@ -2,7 +2,7 @@
 FROM openjdk:8-jdk-alpine
 
 # Create a working directory
-WORKDIR /
+
 
 # Copy the compiled JAR file to the working directory
 COPY target/SCM-0.0.1-SNAPSHOT.jar /SCM.jar
