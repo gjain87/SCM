@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/base2::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>User Dashboard</title>
+</head>
+<body>
+	
+	<section>
+			<div th:if="${session.message}" th:classappend="'alert-'+${session.message.type}" class="alert text-center " role="alert">
+  <span th:text="${session.message.content}"></span>
+  <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+</div>
+		<div class="card">
+			<div class="card-body">
+				<div class="container text-center">
+						<img src="" th:src="@{'/image/'+${user.imageUrl}}" class="profile" style="height: 200px; width: 200px;"/>
+					</div>
+		<h1 class="text-center font-italic text-secondary card-title ">Welcome <span th:text="${user.name}"></span>, Start Adding your Contacts on Cloud!!</h1>
+		<a th:href="@{/user/addContactForm}" class="btn btn-primary text-uppercase text-center btn-block">ADD new Contact</a>
+		<div class="container text-center mt-2">
+			<button  class="btn btn-success" onclick="paymentStart()">Pay for Preminum!</button>
+		</div>
+			</div>
+		</div>
+		</section>
+
+</body>
+</html>

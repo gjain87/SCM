@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<section>
+	
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 offset-md-3">
+				<div class="mycard mt-3 mb-3">
+					
+					<div th:if="${session.message}" th:classappend="${session.message.type}"  class="alert" role="alert">
+					 <span class="text-center" th:text="${session.message.content}"></span>
+					 
+					</div>
+					
+					<img th:src="@{/image/add-user.png}" alt="add-user.png" class="signup-icon" />
+					<h1 class="text-center">SignUp Here</h1>
+					
+					<form th:action="@{/register}" method="post" th:object="${user}">
+						
+						<div class="form-group">
+						    <label for="name"> Name</label>
+						   <input type="text" th:classappend="${#fields.hasErrors('name')?'is-invalid':''}" class="form-control" id="name" aria-describedby="emailHelp" name="name" placeholder="Enter your name"  th:value="${user.name}">
+						    <div class="invalid-feedback" th:each="e:${#fields.errors('name')}" th:text="${e}">
+								
+							</div>
+						</div>
+						
+						<div class="form-group"
+						    <label for="email"> Email</label>
+						    <input type="email" th:classappend="${#fields.hasErrors('email')?'is-invalid':''}"class="form-control" id="email" aria-describedby="emailHelp" name="email" placeholder="Enter your email"  th:value="${user.email}">
+						    <div class="invalid-feedback" th:each="e:${#fields.errors('email')}" th:text="${e}">
+								
+							</div>
+						</div>
+						
+						<div class="form-group"
+						    <label for="password"> Password</label>
+						    <input type="password" class="form-control" id="password" aria-describedby="emailHelp" name="password" placeholder="Enter password" required>
+						    
+						</div>
+						
+						<div class="form-group">
+							<textarea name="about" th:text="${user.about}"  rows="6" class="form-control" placeholder="Enter Something about yourself"></textarea>
+							
+						</div>
+						
+						<div class="form-group form-check">
+							<input type="checkbox" name="agreement" class="agreement" id="agreement"/>
+							<lable for="agreement">Accept Terms and Conditions</lable>
+						</div>
+						
+						<div class="container text-center">
+							<button class="btn bg-primary text-white btn-block" type="submit">Register</button>
+							<button class="btn bg-secondary text-white btn-block" type="reset">Reset</button>
+							
+						</div>
+						
+						
+						
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+</body>
+</html>
